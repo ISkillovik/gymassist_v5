@@ -1,0 +1,60 @@
+.homePageWrapper {
+  display: flex;
+  flex-direction: column;
+
+  background: linear-gradient(
+      220deg,
+      rgba(104, 128, 128, 0.6),
+      rgba(8, 20, 20, 0.6)
+    ),
+    url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438");
+  height: 93vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.homePageMain {
+  flex: 1 1 auto;
+  padding: 30px;
+}
+
+.homePageAnimText,
+.homePageAnimTextBr {
+  font-size: 50px;
+  position: relative;
+  top: 30%;
+  width: 24em;
+  margin: 0 auto;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%);
+}
+
+.homePageAnimTextBr {
+  animation: typewriter 3s steps(44) 4.5s 1 normal both,
+    blinkTextCursor 500ms steps(44) infinite normal;
+}
+
+.homePageAnimText {
+  animation: typewriter 3s steps(44) 1s 1 normal both,
+    blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 24em;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}

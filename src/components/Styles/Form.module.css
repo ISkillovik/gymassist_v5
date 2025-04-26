@@ -1,0 +1,95 @@
+.formInput {
+  outline: none;
+  display: block;
+  height: 60px;
+  width: 250px;
+  border-radius: 10px;
+  padding: 0 10px 0 40px;
+  margin-top: 8px;
+  font-size: 14px;
+  border: 2px solid black;
+}
+
+.formInputErr {
+  outline: none;
+  display: block;
+  height: 60px;
+  width: 250px;
+  border-radius: 10px;
+  padding: 0 10px 0 40px;
+  margin-top: 8px;
+  font-size: 14px;
+  border: 2px solid rgb(247, 0, 0);
+}
+
+.loginErr {
+  color: red;
+  font-size: 10px;
+  font-weight: Bold;
+  position: relative;
+  bottom: 135px;
+  right: 42px;
+}
+
+.mediForgot {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.mediForgot a {
+  text-decoration: none;
+  color: aqua;
+}
+
+.formLogo {
+  position: relative;
+  right: 125px;
+  top: 52px;
+  color: rgb(32, 32, 32);
+  font-size: 1.3rem;
+}
+
+.passEye {
+  position: relative;
+  left: 125px;
+  bottom: 40px;
+  font-size: 1.4rem;
+  color: rgb(32, 32, 32);
+  cursor: pointer;
+}
+
+.mediaLogo {
+  font-size: 25px;
+}
+
+.buttonsBox {
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+}
+
+.formButton {
+  height: 50px;
+  padding: 0 15px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.mainForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 520px;
+  width: 400px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-left: 3px solid rgba(255, 255, 255, 0.1);
+  border-right: 3px solid rgba(255, 255, 255, 0.1);
+}

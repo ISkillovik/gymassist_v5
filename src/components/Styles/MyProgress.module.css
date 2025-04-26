@@ -1,0 +1,250 @@
+.input {
+  width: 300px;
+  padding: 12px 150px 12px 55px;
+  margin: 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.input:hover {
+  background-color: rgb(214, 214, 214);
+}
+
+.todoIcon {
+  position: relative;
+  top: 15px;
+  left: 60px;
+  font-size: 1.8rem;
+  padding-right: 10px;
+  color: teal;
+}
+
+.ploblemSide {
+  display: flex;
+}
+
+.inputWithText {
+  outline: solid green;
+}
+
+.inputBox {
+  margin-top: 70px;
+  width: 515px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputBoxButton:disabled {
+  opacity: 0.3;
+  border: 2px solid rgb(175, 175, 175);
+  background: rgb(78, 97, 97);
+  text-align: center;
+  color: rgb(255, 255, 255);
+  min-width: 80px;
+  padding: 11px 5px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.inputBoxButton {
+  border: 2px solid rgb(8 20 20);
+  background: rgba(255, 255, 255);
+  text-align: center;
+  color: rgb(78, 97, 97);
+  min-width: 80px;
+  padding: 11px 5px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.todoIconTextWD {
+  background: rgb(78, 97, 97);
+  text-align: center;
+  color: #fff;
+  min-width: 160px;
+  padding: 10px 5px;
+  font-size: 20px;
+  position: relative;
+  border-radius: 5px;
+}
+
+/* --------------------------------------------------- */
+
+.progressMain {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.progressBody {
+  position: relative;
+  max-width: 300px;
+  min-width: 300px;
+  height: 762px;
+  margin: 0 auto;
+  background-image: url("../../icons/man-body/man-body3.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 270px;
+}
+
+.bodyHuman {
+  height: 80vh;
+  padding-top: 50px;
+}
+
+.chartWrapper {
+  width: 750px;
+}
+
+.bodyHumanNeck path:hover,
+.bodyHumanChest path:hover,
+.bodyHumanArmLeft path:hover,
+.bodyHumanArmRight path:hover,
+.bodyForearmLeft path:hover,
+.bodyForearmRight path:hover,
+.bodyWaistline path:hover,
+.bodyQuadLeft path:hover,
+.bodyQuadRight path:hover,
+.bodyCalfLeft path:hover,
+.bodyCalfRight path:hover {
+  fill: rgb(250, 250, 250);
+}
+
+.bodyWeight {
+  margin: 5px 10px;
+  height: 4vh;
+  z-index: 2;
+}
+
+.bodyWeightCountainer:hover {
+  background-color: white;
+  color: black;
+}
+
+.bodyWeightCountainer {
+  cursor: pointer;
+  position: absolute;
+  top: 750px;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  border: 2px, solid, rgb(12, 12, 12);
+  border-radius: 50px;
+  width: 200px;
+}
+
+.bodyWeightCountainer p {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tutorClose {
+  visibility: visible;
+}
+
+.tutorOpen {
+  visibility: hidden;
+}
+
+.bodyHumanNeck {
+  position: absolute;
+  min-height: 41px;
+  max-height: 41px;
+  top: 118px;
+  left: 120px;
+  z-index: 2;
+}
+
+.bodyHumanChest {
+  height: 70px;
+  position: absolute;
+  top: 160px;
+  left: 70px;
+  z-index: 2;
+}
+
+.bodyHumanArmLeft {
+  height: 70px;
+  position: absolute;
+  top: 210px;
+  right: 30px;
+  z-index: 2;
+}
+
+.bodyHumanArmRight {
+  height: 70px;
+  position: absolute;
+  top: 210px;
+  left: 30px;
+  z-index: 2;
+}
+
+.bodyForearmLeft {
+  height: 98px;
+  position: absolute;
+  top: 270px;
+  right: 25px;
+  z-index: 2;
+}
+
+.bodyForearmRight {
+  height: 98px;
+  position: relative;
+  top: 270px;
+  right: 110px;
+  z-index: 2;
+}
+
+.bodyWaistline {
+  height: 150px;
+  position: absolute;
+  top: 228px;
+  left: 85px;
+  z-index: 2;
+}
+
+.bodyQuadLeft {
+  height: 145px;
+  position: absolute;
+  right: 74px;
+  top: 360px;
+  z-index: 2;
+}
+
+.bodyQuadRight {
+  height: 145px;
+  position: absolute;
+  right: 158px;
+  top: 360px;
+  z-index: 2;
+}
+
+.bodyCalfLeft {
+  height: 118px;
+  position: absolute;
+  right: 88px;
+  bottom: 92px;
+  z-index: 2;
+}
+
+.bodyCalfRight {
+  height: 118px;
+  position: absolute;
+  right: 160px;
+  bottom: 92px;
+  z-index: 2;
+}
+
+@media (max-width: 713px) {
+  .progressBody {
+    width: 100%;
+  }
+}
