@@ -8,7 +8,6 @@ import "./firebase";
 import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import MyProgress from "./components/Pages/MyProgress";
-import "./App.css";
 
 function App() {
   return (

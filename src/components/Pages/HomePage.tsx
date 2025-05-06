@@ -3,7 +3,7 @@ import useAuth from "../../hooks/use-auth";
 import styles from "../Styles/HomePage.module.css";
 
 const HomePage = () => {
-  const { isAuth, email } = useAuth();
+  const { isAuth } = useAuth();
   return isAuth ? (
     <div className={styles.homePageWrapper}>
       <div className={styles.homePageMain}>

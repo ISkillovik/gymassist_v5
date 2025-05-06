@@ -1,7 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface User {
+  apiKey: string;
+  appName: string;
+  createdAt: string;
+  displayName: string;
+  email: string;
+  emailVerified: boolean;
+  isAnonymous: boolean;
+  lastLoginAt: string;
+  photoURL: string;
+  providerData: string[];
+  stsTokenManager: string[];
+  uid: string;
+}
+
+// interface User {
+//   id: number;
+//   name: string;
+//   email: string;
+// }
+
 const initialState = {
-  currentUser: null || JSON.parse(localStorage.getItem("user")),
+  email: null,
+  token: null,
+  id: null,
+  currentUser: (() => {
+    const stored = localStorage.getItem("user");
+    return stored ? (JSON.parse(stored) as User) : null;
+  })(),
   // tokern: null,
   // id: null,
 };
@@ -9,7 +36,6 @@ const initialState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-
   reducers: {
     setUser(state, action) {
       state.currentUser = action.payload.currentUser;
@@ -19,7 +45,7 @@ const userSlice = createSlice({
     },
     removeUser(state) {
       localStorage.removeItem("user");
-      state.displayName = null;
+      // state.displayName = null;
       //state.userName = null;
       // state.token = null;
       // state.id = null;

@@ -4,6 +4,9 @@ import LineChartJS from "./LineChartJS";
 import ParamInput from "../ParamInput";
 
 const CalfRight = ({ counter, data, newPaddedDate }) => {
+  // let x = 123
+  // const mes = `userGym.${x}`;
+
   const updateHandleAdd = async (num) => {
     await updateDoc(doc(db, "users", counter.uid), {
       "userGym.calfRight": [...data.userGym.calfRight, newPaddedDate, num],

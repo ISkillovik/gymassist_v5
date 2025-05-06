@@ -4,12 +4,14 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../store/slices/userSlice";
 import { useState } from "react";
-import { RiLockPasswordFill } from "react-icons/ri";
-import { IoMailSharp } from "react-icons/io5";
-import { IoMdEyeOff } from "react-icons/io";
-import { IoEye } from "react-icons/io5";
-import { FcGoogle } from "react-icons/fc";
-import { BsFacebook } from "react-icons/bs";
+import {
+  IoMailSharpIco,
+  RiLockPasswordFillIco,
+  IoMdEyeOffIco,
+  IoEyeIco,
+  FcGoogleIco,
+  BsFacebookIco,
+} from "../../models";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
@@ -27,7 +29,7 @@ const LoginPage = () => {
     }, 2500);
   };
 
-  const handleLogin = (email, password) => {
+  const handleLogin = (email: string, password: string): void => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
@@ -46,7 +48,7 @@ const LoginPage = () => {
   return (
     <div className={styles.mainForm}>
       <div>
-        <IoMailSharp className={styles.formLogo} />
+        <IoMailSharpIco className={styles.formLogo} />
         <input
           className={authErr ? styles.formInput : styles.formInputErr}
           type="email"
@@ -56,7 +58,7 @@ const LoginPage = () => {
         ></input>
       </div>
       <div>
-        <RiLockPasswordFill className={styles.formLogo} />
+        <RiLockPasswordFillIco className={styles.formLogo} />
         <input
           className={authErr ? styles.formInput : styles.formInputErr}
           type={passEye ? "password" : "text"}
@@ -66,14 +68,14 @@ const LoginPage = () => {
         />
 
         {passEye ? (
-          <IoMdEyeOff
+          <IoMdEyeOffIco
             className={styles.passEye}
             onClick={() => {
               setPassEye(!passEye);
             }}
           />
         ) : (
-          <IoEye
+          <IoEyeIco
             className={styles.passEye}
             onClick={() => {
               setPassEye(!passEye);
@@ -91,10 +93,10 @@ const LoginPage = () => {
           Login
         </button>
         <button className={styles.formButton}>
-          <FcGoogle className={styles.mediaLogo} />
+          <FcGoogleIco className={styles.mediaLogo} />
         </button>
         <button className={styles.formButton}>
-          <BsFacebook className={styles.mediaLogo} />
+          <BsFacebookIco className={styles.mediaLogo} />
         </button>
       </div>
       <div className={styles.mediForgot}>
