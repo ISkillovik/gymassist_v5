@@ -1,5 +1,4 @@
 import { db } from "../../firebase";
-import BodyWeight from "../visualize/BodyWeight";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/use-auth";
 import { useSelector } from "react-redux";
@@ -20,14 +19,19 @@ const MyProgress = () => {
   const pMonth = month.toString().padStart(2, "0");
   const pDay = day.toString().padStart(2, "0");
   const newPaddedDate = `${pDay}/${pMonth}/${year}`;
+  const counter = useSelector((state) => state.user.currentUser);
 
-  console.log(newPaddedDate);
+  useEffect(() => {
+    onSnapshot(doc(db, "users", counter.uid), (doc) => {
+      setData(doc.data());
+    });
+  }, [isAuth]);
 
   function testo(num) {
     switch (num) {
       case 0:
         return (
-          <BodyWeight
+          <BodyInputVal
             title={"Weight"}
             metrix={"kg"}
             bodyPart={"bodyWeight"}
@@ -174,14 +178,6 @@ const MyProgress = () => {
         break;
     }
   }
-
-  const counter = useSelector((state) => state.user.currentUser);
-
-  useEffect(() => {
-    const unsub = onSnapshot(doc(db, "users", counter.uid), (doc) => {
-      setData(doc.data());
-    });
-  }, [isAuth]);
 
   const handleAdd = async (e) => {
     await setDoc(doc(db, "users", counter.uid), {
