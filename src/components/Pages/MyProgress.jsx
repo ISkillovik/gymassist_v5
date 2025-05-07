@@ -1,13 +1,4 @@
 import { db } from "../../firebase";
-import ChestG from "../visualize/ChestG";
-
-import CalfLeft from "../visualize/CalfLeft";
-import CalfRight from "../visualize/CalfRight";
-
-import ForearmRight from "../visualize/ForearmRight";
-import QuadLeft from "../visualize/QuadLeft";
-import QuadRight from "../visualize/QuadRight";
-import Waistline from "../visualize/Waistline";
 import BodyWeight from "../visualize/BodyWeight";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/use-auth";
@@ -20,7 +11,7 @@ import BodyInputVal from "../visualize/BodyInputVal";
 const MyProgress = () => {
   const [bodyPartProg, showBodyPartProg] = useState(12);
   const [newBee, setNewBee] = useState(true);
-  const { isAuth, email } = useAuth();
+  const { isAuth } = useAuth();
   const [data, setData] = useState({});
   const dateObj = new Date();
   const month = dateObj.getMonth() + 1;
@@ -29,6 +20,8 @@ const MyProgress = () => {
   const pMonth = month.toString().padStart(2, "0");
   const pDay = day.toString().padStart(2, "0");
   const newPaddedDate = `${pDay}/${pMonth}/${year}`;
+
+  console.log(newPaddedDate);
 
   function testo(num) {
     switch (num) {
@@ -62,8 +55,8 @@ const MyProgress = () => {
             title={"Left arm"}
             metrix={"cm"}
             bodyPart={"armLeft"}
+            dataPart={data.userGym.armLeft}
             counter={counter}
-            data={data}
             newPaddedDate={newPaddedDate}
           />
         );
@@ -74,15 +67,22 @@ const MyProgress = () => {
             title={"Right arm"}
             metrix={"cm"}
             bodyPart={"armRight"}
+            dataPart={data.userGym.armRight}
             counter={counter}
-            data={data}
             newPaddedDate={newPaddedDate}
           />
         );
         break;
       case 4:
         return (
-          <ChestG counter={counter} data={data} newPaddedDate={newPaddedDate} />
+          <BodyInputVal
+            title={"Chest"}
+            metrix={"cm"}
+            bodyPart={"chest"}
+            dataPart={data.userGym.chest}
+            counter={counter}
+            newPaddedDate={newPaddedDate}
+          />
         );
         break;
       case 5:
@@ -91,45 +91,56 @@ const MyProgress = () => {
             title={"Left forearm"}
             metrix={"cm"}
             bodyPart={"forearmLeft"}
+            dataPart={data.userGym.forearmLeft}
             counter={counter}
-            data={data}
             newPaddedDate={newPaddedDate}
           />
         );
         break;
       case 6:
         return (
-          <ForearmRight
+          <BodyInputVal
+            title={"Right forearm"}
+            metrix={"cm"}
+            bodyPart={"forearmRight"}
+            dataPart={data.userGym.forearmRight}
             counter={counter}
-            data={data}
             newPaddedDate={newPaddedDate}
           />
         );
         break;
       case 7:
         return (
-          <Waistline
+          <BodyInputVal
+            title={"Waistline"}
+            metrix={"cm"}
+            bodyPart={"waistline"}
+            dataPart={data.userGym.waistline}
             counter={counter}
-            data={data}
             newPaddedDate={newPaddedDate}
           />
         );
         break;
       case 8:
         return (
-          <QuadLeft
+          <BodyInputVal
+            title={"Left quad"}
+            metrix={"cm"}
+            bodyPart={"quadLeft"}
+            dataPart={data.userGym.quadLeft}
             counter={counter}
-            data={data}
             newPaddedDate={newPaddedDate}
           />
         );
         break;
       case 9:
         return (
-          <QuadRight
+          <BodyInputVal
+            title={"Right quad"}
+            metrix={"cm"}
             bodyPart={"quadRight"}
+            dataPart={data.userGym.quadRight}
             counter={counter}
-            data={data}
             newPaddedDate={newPaddedDate}
           />
         );
@@ -148,20 +159,18 @@ const MyProgress = () => {
         break;
       case 11:
         return (
-          <CalfRight
+          <BodyInputVal
+            title={"Right calf"}
+            metrix={"cm"}
+            bodyPart={"calfRight"}
+            dataPart={data.userGym.calfRight}
             counter={counter}
-            data={data}
             newPaddedDate={newPaddedDate}
           />
         );
         break;
       case 12:
-        return (
-          <div>
-            xndrum enq @trel ayn mkan@, um chapser@ uzum eq fiqsel, hetaga
-            zargacman@ hetevelu hamar
-          </div>
-        );
+        return <div>working now</div>;
         break;
     }
   }

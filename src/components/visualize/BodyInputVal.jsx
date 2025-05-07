@@ -8,13 +8,13 @@ import Swal from "sweetalert2";
 
 const BodyInputVal = ({
   counter,
-  data,
   dataPart,
   newPaddedDate,
   bodyPart,
   metrix,
   title,
 }) => {
+  const [text, setText] = useState("");
   const somText = `userGym.${bodyPart}`;
   const updateHandleAdd = async (num) => {
     await updateDoc(doc(db, "users", counter.uid), {
@@ -24,36 +24,14 @@ const BodyInputVal = ({
 
   const inputDateVal = dataPart[dataPart.length - 2];
 
-  const futureORequal = () => {
-    if (inputDateVal != null && inputDateVal !== "") {
-      let dateArr = inputDateVal.split("-");
-      let inputDate = new Date(
-        '"' + dateArr[0] + "-" + dateArr[1] + "-" + dateArr[2] + '"'
-      ).setHours(0, 0, 0, 0);
-
-      let toDay = new Date().setHours(0, 0, 0, 0);
-
-      return inputDate <= toDay;
-    }
-  };
-
-  const dateConverter = (dateIn) => {
-    dateIn.setHours(12);
-    let dateIn10days = new Date(dateIn.setDate(dateIn.getDate() + 42));
-
-    let strIn10Days =
-      ("0" + dateIn10days.getDate()).slice(-2) +
-      "/" +
-      ("0" + (dateIn10days.getMonth() + 1)).slice(-2) +
-      "/" +
-      dateIn10days.getFullYear();
-
-    return strIn10Days;
-  };
-
-  console.log(dateConverter(new Date()), inputDateVal);
-
-  const [text, setText] = useState("");
+  function isMoreThan10Days(dateString) {
+    const [day, month, year] = dateString.split("/").map(Number);
+    const inputDate = new Date(year, month - 1, day);
+    const currentDate = new Date();
+    const diffInMs = currentDate - inputDate;
+    const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+    return diffInDays >= 10;
+  }
 
   const numContoller = (e) => {
     if (e.target.value === "09") {
@@ -123,7 +101,7 @@ const BodyInputVal = ({
         </div>
 
         <button
-          disabled={inputDateVal && !futureORequal(inputDateVal)}
+          disabled={!isMoreThan10Days(inputDateVal)}
           className={styles.inputBoxButton}
           onClick={hndikClick2}
         >
