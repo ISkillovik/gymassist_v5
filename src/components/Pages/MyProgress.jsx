@@ -1,23 +1,21 @@
 import { db } from "../../firebase";
 import ChestG from "../visualize/ChestG";
-import ArmLeft from "../visualize/ArmLeft";
-import ArmRight from "../visualize/ArmRight";
-import Neck from "../visualize/Neck";
+
 import CalfLeft from "../visualize/CalfLeft";
 import CalfRight from "../visualize/CalfRight";
-import ForearmLeft from "../visualize/ForearmLeft";
+
 import ForearmRight from "../visualize/ForearmRight";
 import QuadLeft from "../visualize/QuadLeft";
 import QuadRight from "../visualize/QuadRight";
 import Waistline from "../visualize/Waistline";
 import BodyWeight from "../visualize/BodyWeight";
 import { useEffect, useState } from "react";
-import ReactPlayer from "react-player";
 import useAuth from "../../hooks/use-auth";
 import { useSelector } from "react-redux";
-import { doc, setDoc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, setDoc, onSnapshot } from "firebase/firestore";
 import styles from "../Styles/MyProgress.module.css";
 import ManBody from "../ManBody";
+import BodyInputVal from "../visualize/BodyInputVal";
 
 const MyProgress = () => {
   const [bodyPartProg, showBodyPartProg] = useState(12);
@@ -37,20 +35,33 @@ const MyProgress = () => {
       case 0:
         return (
           <BodyWeight
+            title={"Weight"}
+            metrix={"kg"}
+            bodyPart={"bodyWeight"}
+            dataPart={data.userGym.bodyWeight}
             counter={counter}
-            data={data}
             newPaddedDate={newPaddedDate}
           />
         );
         break;
       case 1:
         return (
-          <Neck counter={counter} data={data} newPaddedDate={newPaddedDate} />
+          <BodyInputVal
+            title={"Neck"}
+            metrix={"cm"}
+            bodyPart={"neck"}
+            dataPart={data.userGym.neck}
+            counter={counter}
+            newPaddedDate={newPaddedDate}
+          />
         );
         break;
       case 2:
         return (
-          <ArmLeft
+          <BodyInputVal
+            title={"Left arm"}
+            metrix={"cm"}
+            bodyPart={"armLeft"}
             counter={counter}
             data={data}
             newPaddedDate={newPaddedDate}
@@ -59,7 +70,10 @@ const MyProgress = () => {
         break;
       case 3:
         return (
-          <ArmRight
+          <BodyInputVal
+            title={"Right arm"}
+            metrix={"cm"}
+            bodyPart={"armRight"}
             counter={counter}
             data={data}
             newPaddedDate={newPaddedDate}
@@ -73,7 +87,10 @@ const MyProgress = () => {
         break;
       case 5:
         return (
-          <ForearmLeft
+          <BodyInputVal
+            title={"Left forearm"}
+            metrix={"cm"}
+            bodyPart={"forearmLeft"}
             counter={counter}
             data={data}
             newPaddedDate={newPaddedDate}
@@ -110,6 +127,7 @@ const MyProgress = () => {
       case 9:
         return (
           <QuadRight
+            bodyPart={"quadRight"}
             counter={counter}
             data={data}
             newPaddedDate={newPaddedDate}
@@ -118,9 +136,12 @@ const MyProgress = () => {
         break;
       case 10:
         return (
-          <CalfLeft
+          <BodyInputVal
+            title={"Left calf"}
+            metrix={"cm"}
+            bodyPart={"calfLeft"}
+            dataPart={data.userGym.calfLeft}
             counter={counter}
-            data={data}
             newPaddedDate={newPaddedDate}
           />
         );
@@ -201,22 +222,6 @@ const MyProgress = () => {
           >
             tutor
           </button>
-
-          {/* <div className={newBee ? styles.tutorOpen : styles.tutorClose}>
-            <ReactPlayer
-              light
-              url={"https://youtu.be/FKRJfnZMKiM?si=fxCKBmA2qd_zb7G2"}
-              controls={true}
-              playIcon={
-                <img
-                  src={require("../../icons/playButton.png")}
-                  alt=""
-                  width={"75px"}
-                />
-              }
-              playing
-            />
-          </div> */}
         </div>
       )}
     </div>

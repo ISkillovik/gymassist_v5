@@ -3,16 +3,18 @@ import { doc, updateDoc } from "firebase/firestore";
 import LineChartJS from "./LineChartJS";
 import ParamInput from "../ParamInput";
 
-const QuadRight = ({ counter, data, newPaddedDate }) => {
+const QuadRight = ({ counter, data, newPaddedDate, bodyPart }) => {
+  const somText = `userGym.${bodyPart}`;
+  const somTexttwo = `userGym.lastData.${bodyPart}`;
   const updateHandleAdd = async (num) => {
     await updateDoc(doc(db, "users", counter.uid), {
-      "userGym.quadRight": [...data.userGym.quadRight, newPaddedDate, num],
+      [somText]: [...data.userGym.quadRight, newPaddedDate, num],
     });
   };
 
   const inputDateValDoc = async (num) => {
     await updateDoc(doc(db, "users", counter.uid), {
-      "userGym.lastData.quadRight": dateConverter(new Date()),
+      [somTexttwo]: dateConverter(new Date()),
     });
   };
 

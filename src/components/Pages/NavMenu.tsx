@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../hooks/redux-hooks";
 import { removeUser } from "../store/slices/userSlice";
 import styles from "../Styles/NavMenu.module.css";
 import { useState } from "react";
-import useAuth from "../../hooks/use-auth";
 
 const NavMenu = () => {
-  const dispatch = useDispatch();
-  const { isAuth, email } = useAuth();
+  const dispatch = useAppDispatch();
   const [menuOpen, setMenuOpen] = useState(false);
-  //const userName = useSelector((state) => state.user.currentUser.displayName);
+  const getUserInfoFromLocalS = () => {
+    const fromStorage = localStorage.getItem("user");
+    return fromStorage ? JSON.parse(fromStorage).displayName : null;
+  };
+
+  console.log(getUserInfoFromLocalS());
 
   return (
     <nav className={styles.NavCountain}>
@@ -31,22 +34,18 @@ const NavMenu = () => {
       </label>
 
       <ul className={menuOpen ? styles.OpenMenu : ""}>
-        {/* {userName ? (
-          <li>
-            <Link>{userName}</Link>
-          </li>
-        ) : (
-          ""
-        )} */}
+        <li>
+          <Link to="">{getUserInfoFromLocalS()}</Link>
+        </li>
 
         <li>
-          <Link>About</Link>
+          <Link to="">About</Link>
         </li>
         <li>
           <Link to={"/progress"}>My Progress</Link>
         </li>
         <li>
-          <Link>Settings</Link>
+          <Link to="">Settings</Link>
         </li>
         <li
           onClick={() => {

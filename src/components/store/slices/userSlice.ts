@@ -25,12 +25,11 @@ const initialState = {
   email: null,
   token: null,
   id: null,
+  userName: null,
   currentUser: (() => {
     const stored = localStorage.getItem("user");
     return stored ? (JSON.parse(stored) as User) : null;
   })(),
-  // tokern: null,
-  // id: null,
 };
 
 const userSlice = createSlice({
@@ -46,7 +45,7 @@ const userSlice = createSlice({
     removeUser(state) {
       localStorage.removeItem("user");
       // state.displayName = null;
-      //state.userName = null;
+      state.userName = null;
       // state.token = null;
       // state.id = null;
       // state.currentUser = null;
