@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import useAuth from "../../hooks/use-auth";
 import styles from "../Styles/HomePage.module.css";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   const { isAuth } = useAuth();
   return isAuth ? (
     <div className={styles.homePageWrapper}>

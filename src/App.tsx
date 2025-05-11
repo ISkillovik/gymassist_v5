@@ -8,6 +8,8 @@ import "./firebase";
 import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import MyProgress from "./components/Pages/MyProgress";
+import MyWards from "./components/Pages/MyWards";
+import Ward from "./components/Pages/Ward";
 
 function App() {
   return (
@@ -15,12 +17,13 @@ function App() {
       <Provider store={store}>
         <div className="App">
           <Routes>
-            <Route path="/login" Component={LoginPage} />
-            <Route path="/register" Component={RegisterPage} />
+            <Route path="login" Component={LoginPage} />
+            <Route path="register" Component={RegisterPage} />
             <Route path="/" Component={MainLayout}>
               <Route index Component={HomePage} />
-
-              <Route path="/progress" Component={MyProgress} />
+              <Route path="progress" Component={MyProgress} />
+              <Route path="mywards" element={<MyWards />} />
+              <Route path="mywards/:key" element={<Ward />} />
             </Route>
           </Routes>
         </div>

@@ -14,7 +14,7 @@ import {
 } from "../../models";
 import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const dispatch = useDispatch();

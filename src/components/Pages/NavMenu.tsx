@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../hooks/redux-hooks";
 import { removeUser } from "../store/slices/userSlice";
 import styles from "../Styles/NavMenu.module.css";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const NavMenu = () => {
   const dispatch = useAppDispatch();
@@ -39,7 +40,7 @@ const NavMenu = () => {
         </li>
 
         <li>
-          <Link to="">About</Link>
+          <NavLink to={"/mywards"}>My wards</NavLink>
         </li>
         <li>
           <Link to={"/progress"}>My Progress</Link>

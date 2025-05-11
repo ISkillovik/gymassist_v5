@@ -1,0 +1,10 @@
+.wardCard {
+  width: 400px;
+  height: 500px;
+  background-color: black;
+  margin: 30px;
+}
+
+.wardCard p {
+  font-size: 25px;
+}

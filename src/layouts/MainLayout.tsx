@@ -3,10 +3,10 @@ import NavMenu from "../components/Pages/NavMenu";
 
 const MainLayout = () => {
   return (
-    <>
+    <div>
       <NavMenu />
       <Outlet />
-    </>
+    </div>
   );
 };
 
