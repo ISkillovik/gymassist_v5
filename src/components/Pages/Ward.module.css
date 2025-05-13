@@ -1,8 +1,65 @@
+.wardMain {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .wardMain {
+    flex-direction: column;
+  }
+}
+
+.wardButtons {
+  background-color: rgb(255, 255, 255);
+  font-size: 20px;
+  display: block;
+  color: rgb(0, 0, 0);
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  border-style: none;
+  cursor: pointer;
+}
+
+.wardButtonsEdit {
+  background-color: rgb(255, 255, 255);
+  font-size: 20px;
+  display: block;
+  color: rgb(0, 0, 0);
+  padding: 0.5rem;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  border-style: none;
+  cursor: pointer;
+}
+.wardButtonsEdit:hover {
+  background-color: rgb(104, 128, 128);
+}
+.wardButtons:hover {
+  background-color: rgb(104, 128, 128);
+}
+
+.wardButtonsContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
 .wardCard {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 400px;
   height: 500px;
   background-color: black;
   margin: 30px;
+  border-radius: 1rem;
+  border-style: none;
+}
+
+.wardCardSettingButton:hover {
+  color: rgb(104, 128, 128);
 }
 
 .wardCard p {

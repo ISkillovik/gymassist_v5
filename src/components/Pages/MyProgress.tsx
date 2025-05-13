@@ -202,10 +202,10 @@ const MyProgress: React.FC = () => {
     await setDoc(doc(db, "users", counter!.uid), {
       azizVardanyan: {
         info: {
-          fullName: "",
-          age: "",
-          sex: "",
-          bodyWeight: "number",
+          fullName: "aziz",
+          age: 25,
+          sex: "Male",
+          bodyWeight: 50,
           regData: "Data",
         },
         userBody: {
@@ -235,10 +235,7 @@ const MyProgress: React.FC = () => {
           neck: [],
           waistline: [],
         },
-        medicalInfo: {
-          data: "text",
-          data2: "text",
-        },
+        medicalInfo: {},
       },
     });
   };

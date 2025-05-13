@@ -4,6 +4,11 @@ import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
+import { IoMdSettings } from "react-icons/io";
+
+export const IoMdSettingsIco = IoMdSettings as unknown as React.FC<
+  React.SVGProps<SVGSVGElement>
+>;
 
 export const IoMailSharpIco = IoMailSharp as unknown as React.FC<
   React.SVGProps<SVGSVGElement>

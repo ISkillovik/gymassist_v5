@@ -4,8 +4,7 @@ import { useAppSelector } from "../../hooks/redux-hooks";
 import { db } from "../../firebase";
 import useAuth from "../../hooks/use-auth";
 import styles from "./MyWards.module.css";
-import { useNavigate, NavLink, Link, Navigate } from "react-router-dom";
-import WardCard from "../WardCard";
+import { Link } from "react-router-dom";
 
 type UserInfo = {
   fullName: string;
@@ -44,7 +43,7 @@ type Users = Record<string, User>;
 const MyWards: React.FC = () => {
   const [data, setData] = useState<Users | null>(null);
   const counter = useAppSelector((state) => state.user.currentUser);
-  console.log(data);
+  console.log(counter);
   const { isAuth } = useAuth();
 
   const dateObj = new Date();
@@ -72,10 +71,14 @@ const MyWards: React.FC = () => {
   };
 
   const handleAddUser = async () => {
-    await updateDoc(doc(db, "users", counter!.uid), {
-      [`${name}${age}${weight}`]: user,
-    });
-    closeModal();
+    if (name && age && weight && gender) {
+      await updateDoc(doc(db, "users", counter!.uid), {
+        [`${name}${age}${weight}`]: user,
+      });
+      closeModal();
+    } else {
+      console.log("err");
+    }
   };
 
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -137,11 +140,6 @@ const MyWards: React.FC = () => {
     return () => unsubscribe();
   }, [isAuth, counter]);
   console.log(data);
-  const newWardAdd = async () => {
-    await updateDoc(doc(db, "users", counter!.uid), {
-      vladikCakoyan: user,
-    });
-  };
 
   return (
     <div>
@@ -155,20 +153,24 @@ const MyWards: React.FC = () => {
                 className={styles.modalContent}
                 onClick={(e) => e.stopPropagation()}
               >
-                <h3>Add NOOB</h3>
+                <h6>Add NOOB</h6>
                 <input
                   type="text"
                   className={styles.input}
                   placeholder="Name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 11) setName(e.target.value);
+                  }}
                 />
                 <input
                   type="number"
                   className={styles.input}
                   placeholder="Age"
                   value={age}
-                  onChange={(e) => setAge(e.target.value)}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 2) setAge(e.target.value);
+                  }}
                 />
                 <select
                   className={styles.input}
@@ -184,7 +186,9 @@ const MyWards: React.FC = () => {
                   className={styles.input}
                   placeholder="Weight"
                   value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 3) setWeight(e.target.value);
+                  }}
                 />
                 <input
                   type="file"
@@ -205,7 +209,12 @@ const MyWards: React.FC = () => {
         </div>
         {data ? (
           Object.entries(data).map(([key, value]) => (
-            <Link to={key} state={{ value }} key={key}>
+            <Link
+              className={styles.cardUserInfoNameLink}
+              to={key}
+              state={{ value, counter }}
+              key={key}
+            >
               {" "}
               <div
                 key={key}
@@ -215,7 +224,11 @@ const MyWards: React.FC = () => {
                     : styles.cardUserFemale
                 }
               >
-                <p>{`${value.info.fullName} ${value.info.age}`}</p>
+                <div className={styles.cardUserInfoName}>
+                  <p
+                    className={styles.cardUserInfoNameText}
+                  >{`${value.info.fullName} ${value.info.age}`}</p>
+                </div>
               </div>
             </Link>
           ))
