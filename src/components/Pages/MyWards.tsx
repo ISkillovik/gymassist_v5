@@ -5,46 +5,13 @@ import { db } from "../../firebase";
 import useAuth from "../../hooks/use-auth";
 import styles from "./MyWards.module.css";
 import { Link } from "react-router-dom";
-
-type UserInfo = {
-  fullName: string;
-  age: number;
-  gender: string;
-  bodyWeight: number;
-  regData: string;
-};
-
-type BodyMeasurements = {
-  chest: number[];
-  armLeft: number[];
-  armRight: number[];
-  forearmLeft: number[];
-  forearmRight: number[];
-  quadLeft: number[];
-  quadRight: number[];
-  calfLeft: number[];
-  calfRight: number[];
-  bodyWeight: number[];
-  neck: number[];
-  waistline: number[];
-};
-
-type TrainingMeasurements = Omit<BodyMeasurements, "bodyWeight">;
-type MedicalInfo = Record<string, any>;
-type User = {
-  info: UserInfo;
-  userBody: BodyMeasurements;
-  training: TrainingMeasurements;
-  medicalInfo: MedicalInfo;
-};
-
-type Users = Record<string, User>;
+import { UsersData } from "../../models";
 
 const MyWards: React.FC = () => {
-  const [data, setData] = useState<Users | null>(null);
+  const [data, setData] = useState<UsersData | null>(null);
   const counter = useAppSelector((state) => state.user.currentUser);
-  console.log(counter);
   const { isAuth } = useAuth();
+  //
 
   const dateObj = new Date();
   const month = dateObj.getMonth() + 1;
@@ -59,6 +26,8 @@ const MyWards: React.FC = () => {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [weight, setWeight] = useState("");
+  const userName = `${name}${age}${weight}`;
+
   const [photo, setPhoto] = useState<File | null>(null);
   const openModal = () => setIsModalOpen(!isModalOpen);
   const closeModal = () => {
@@ -73,7 +42,7 @@ const MyWards: React.FC = () => {
   const handleAddUser = async () => {
     if (name && age && weight && gender) {
       await updateDoc(doc(db, "users", counter!.uid), {
-        [`${name}${age}${weight}`]: user,
+        [userName]: user,
       });
       closeModal();
     } else {
@@ -134,7 +103,7 @@ const MyWards: React.FC = () => {
   useEffect(() => {
     if (!counter?.uid) return;
     const unsubscribe = onSnapshot(doc(db, "users", counter.uid), (doc) => {
-      setData(doc.data() as Users);
+      setData(doc.data() as UsersData);
       console.log(doc.data(), "<<<<< esa");
     });
     return () => unsubscribe();
@@ -212,10 +181,10 @@ const MyWards: React.FC = () => {
             <Link
               className={styles.cardUserInfoNameLink}
               to={key}
-              state={{ value, counter }}
+              state={{ value, counter, key }}
               key={key}
             >
-              {" "}
+              {""}
               <div
                 key={key}
                 className={

@@ -61,7 +61,7 @@ const Ward: React.FC = (value: Props) => {
           Edit User
         </button>
       </div>
-      <div>{userContain[userContainVal]}</div>
+      {userContain[userContainVal]}
     </div>
   );
 };
