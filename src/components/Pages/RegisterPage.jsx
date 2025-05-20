@@ -18,6 +18,21 @@ import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import styles from "../Styles/Form.module.css";
+import styled from "styled-components";
+
+const MainForm = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 520px;
+  width: 400px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-left: 3px solid rgba(255, 255, 255, 0.1);
+  border-right: 3px solid rgba(255, 255, 255, 0.1);
+`;
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -94,7 +109,7 @@ const RegisterPage = () => {
     }
   };
   return (
-    <div className={styles.mainForm}>
+    <MainForm className={styles.mainForm}>
       <div>
         <IoMailSharp className={styles.formLogo} />
         <input
@@ -160,7 +175,7 @@ const RegisterPage = () => {
       {authErr || (
         <p className={styles.loginErr}>Your email or password was incorrect!</p>
       )}
-    </div>
+    </MainForm>
   );
 };
 
