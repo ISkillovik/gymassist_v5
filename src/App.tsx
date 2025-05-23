@@ -10,10 +10,19 @@ import MainLayout from "./layouts/MainLayout";
 import MyProgress from "./components/Pages/MyProgress";
 import MyWards from "./components/Pages/MyWards";
 import Ward from "./components/Pages/Ward";
+import PhotoViewer from "./components/PhotoViewer";
 
 function App() {
   return (
     <BrowserRouter>
+      <PhotoViewer
+        photoId={
+          "https://media.licdn.com/dms/image/v2/C4E0BAQGeKsTj95nZ4Q/company-logo_200_200/company-logo_200_200/0/1630628078319/sdafa_strategy_defence_and_foreign_affairs_logo?e=2147483647&v=beta&t=Kr2cQ7a8sB87nEi1LOC8jvDQi8PXdXAofSDaFnFaiy8"
+        }
+        imageUrl={
+          "https://media.licdn.com/dms/image/v2/C4E0BAQGeKsTj95nZ4Q/company-logo_200_200/company-logo_200_200/0/1630628078319/sdafa_strategy_defence_and_foreign_affairs_logo?e=2147483647&v=beta&t=Kr2cQ7a8sB87nEi1LOC8jvDQi8PXdXAofSDaFnFaiy8"
+        }
+      />
       <Provider store={store}>
         <div className="App">
           <Routes>

@@ -1,5 +1,9 @@
 import styles from "../Styles/Form.module.css";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInAnonymously,
+} from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../store/slices/userSlice";
@@ -8,6 +12,7 @@ import { FcGoogleIco, BsFacebookIco } from "../../models";
 import { Link } from "react-router-dom";
 import { Button, Input, Checkbox, Flex, Form } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { initializeApp } from "firebase/app";
 import styled from "styled-components";
 
 const MainForm = styled.div`
@@ -32,16 +37,33 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const [authErr, setAuthErr] = useState(true);
 
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
-  };
-
   const authInvalidUser = () => {
     setAuthErr(!authErr);
     setTimeout(() => {
       setAuthErr(!!authErr);
     }, 2500);
   };
+
+  const auth = getAuth(
+    initializeApp({
+      apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+      authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+      projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+      storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+      appId: process.env.REACT_APP_FIREBASE_APP_ID,
+      measurementId: "G-RXKDRZ24T9",
+    })
+  );
+
+  signInAnonymously(auth)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log("Анонимный пользователь:", user.uid);
+    })
+    .catch((error) => {
+      console.error("Ошибка анонимной авторизации", error);
+    });
 
   const handleLogin = (email: string, password: string): void => {
     const auth = getAuth();
@@ -65,7 +87,6 @@ const LoginPage: React.FC = () => {
         name="login"
         initialValues={{ remember: true }}
         style={{ maxWidth: 360 }}
-        onFinish={onFinish}
       >
         <Form.Item
           name="username"
